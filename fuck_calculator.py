@@ -3,7 +3,7 @@ import random
 import string
 import time
 from collections.abc import Generator
-from icecream import ic
+
 
 def random_letter() -> Generator[str, None, None]:
     while True:
