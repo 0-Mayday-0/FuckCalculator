@@ -1,4 +1,4 @@
-import subprocess
+
 import random
 import string
 import time
@@ -41,47 +41,44 @@ def rand_until_match(string_match: str):
             while current_jumble[current_index] != original_string_match[current_index]:
                 current_jumble: list[str] = next(string_generator)
 
-                strings.append(f'{''.join(locked_letters)}{''.join(current_jumble[:len(locked_letters)-1])}')
-
                 if current_jumble[current_index] == original_string_match[current_index]:
 
                     locked_letters.append(string_match.pop(current_index))
-                else:
-                    continue
+
+                yield f'{''.join(locked_letters)}{''.join(current_jumble)}'
 
 
         except IndexError:
             break
 
-        strings.append(f'{''.join(locked_letters)}')
 
     return strings
 
 
 
 def main():
-    strings = rand_until_match("Searching for fucks: ")
+    string_match = "Searching for fucks: "
 
-    for i, v in enumerate(strings):
+
+    for v in rand_until_match(string_match):
         print(f'{str(v).ljust(5, ' ') + str(random.randint(0, 1000)).center(5, ' ')}', flush=True)
         time.sleep(0.002)
 
-        if i % 2 == 0:
-            subprocess.call("cmd /c cls")
+        print(f'{chr(27)}[2J', flush=True)
 
-    subprocess.call("cmd /c cls")
+    print(f'{chr(27)}[2J', flush=True)
 
     n = random.randint(0, 1000)
 
     while n != 0:
-        print(f'{strings[-1].ljust(5, ' ') + str(n).center(5, ' ')}', flush=True)
+        print(f'{string_match}{n}', flush=True)
 
         n = random.randint(0, 100)
 
         time.sleep(0.02)
-        subprocess.call("cmd /c cls")
+        print(f'{chr(27)}[2J', flush=True)
 
-    print(f'{strings[-1].ljust(5, ' ') + str(n).center(5, ' ')}', flush=True)
+    print(f'{string_match}{n}', flush=True)
     print("No fucks found to give")
     input()
 
