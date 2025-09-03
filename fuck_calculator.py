@@ -1,4 +1,3 @@
-
 import random
 import string
 import time
@@ -64,9 +63,9 @@ def main():
         print(f'{str(v).ljust(5, ' ') + str(random.randint(0, 1000)).center(5, ' ')}', flush=True)
         time.sleep(0.002)
 
-        print(f'{chr(27)}[2J', flush=True)
+        print('\n'*80, flush=True)
 
-    print(f'{chr(27)}[2J', flush=True)
+    print('\n'*80, flush=True)
 
     n = random.randint(0, 1000)
 
@@ -76,7 +75,7 @@ def main():
         n = random.randint(0, 100)
 
         time.sleep(0.02)
-        print(f'{chr(27)}[2J', flush=True)
+        print('\n'*80, flush=True)
 
     print(f'{string_match}{n}', flush=True)
     print("No fucks found to give")
